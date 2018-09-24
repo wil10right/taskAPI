@@ -1,0 +1,19 @@
+<!-- <p>
+  task works!
+</p> -->
+<div>
+    <h3>Task Info:</h3> 
+    <p>ID: {{ taskToShow._id }}</p>
+    <p>Title: {{ taskToShow.title }}</p>
+    <p>Description: <em>"{{ taskToShow.desc }}"</em></p>
+    <button (click)='getFormInput(taskToShow._id)'>Edit this task?</button>
+
+    <div *ngIf='showEdit'>
+      <form (submit)="editTask(taskToShow._id)">
+        <h3>Edit this task below:</h3>
+        Title:<input type="text" name="oldTask.title" [(ngModel)]="oldTask.title" /><br>
+        Description:<input type="text" name="oldTask.desc" [(ngModel)]="oldTask.desc" /><br>
+        <input type="submit" value="Edit Task"/>
+      </form>
+    </div>
+</div>

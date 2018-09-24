@@ -1,0 +1,47 @@
+<style>
+  body{
+    background-color: black;
+    color: aquamarine;
+  }
+  div{
+    /* outline: dotted red 1px; */
+    margin: 5px;
+    padding: 10px;
+  }
+
+  .showall{
+    margin: 10px;
+  }
+  .single-task{
+    border: 5px black solid;
+    margin: 5px;
+  }
+
+</style>
+
+<h1>Restful Tasks API!</h1>
+
+<button (click)='getTasksFromService()'>Click for All Tasks</button><br>
+
+<div *ngIf='showAll'> 
+  <button (click)='hideAll()'>Hide All Tasks</button>
+  <div *ngFor="let task of allTasks" class="single-task">
+    <h3>{{task.title}}</h3>
+      <a href="#editTask">
+        <button (click)='getTaskById(task._id)'>Show Info</button>
+      </a>
+      <button (click)='deleteTaskById(task._id)'>Delete</button>
+  </div>
+  
+  <app-task *ngIf='oneTask' [taskToShow]='oneTask' id="editTask"></app-task>
+
+</div>
+  <hr>
+    <!-- use the json pipe to see how newTask changes in real time -->
+<h2>Add a new task below!</h2>
+<form (submit)="createTask()">
+  Title: <input type="text" name="newTask.title" [(ngModel)]="newTask.title" /><br>
+  Description: <input type="text" name="newTask.desc" [(ngModel)]="newTask.desc" /><br>
+  <input type="submit" value="Create Task"/>
+</form>
+<!-- <p> {{ newTask | json }} </p> -->
